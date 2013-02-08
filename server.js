@@ -1,8 +1,8 @@
 #!/bin/env node
-//  OpenShift sample Node application
+//  OpenShift Tourducken Node application
 var express = require('express');
 var fs      = require('fs');
-
+var mongoose = require('mongoose');
 
 /**
  *  Define the sample application.
@@ -24,7 +24,11 @@ var Tourducken = function() {
         //  Set the environment variables we need.
         self.ipaddress = process.env.OPENSHIFT_INTERNAL_IP;
         self.port      = process.env.OPENSHIFT_INTERNAL_PORT || 8080;
-
+	self.dbhost  = process.env.OPENSHIFT_NOSQL_DB_HOST;
+	self.dbport  = process.env.OPENSHIFT_NOSQL_DB_PORT;
+	self.dbuname = process.env.OPENSHIFT_NOSQL_DB_USERNAME;
+	self.dbpwd   = process.env.OPENSHIFT_NOSQL_DB_PASSWORD;
+	
         if (typeof self.ipaddress === "undefined") {
             //  Log errors on OpenShift but continue w/ 127.0.0.1 - this
             //  allows us to run/test the app locally.
@@ -105,6 +109,8 @@ var Tourducken = function() {
             res.send("<html><body><img src='" + link + "'></body></html>");
         };
 
+	
+
         self.routes['/'] = function(req, res) {
             res.setHeader('Content-Type', 'text/html');
             res.send(self.cache_get('index.html') );
@@ -118,7 +124,7 @@ var Tourducken = function() {
      */
     self.initializeServer = function() {
         self.createRoutes();
-        self.app = express.createServer();
+        self.app = express();
 
         //  Add handlers for the app (from the routes).
         for (var r in self.routes) {
