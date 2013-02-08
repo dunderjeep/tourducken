@@ -6,7 +6,8 @@ var dtSchema = new Schema({
 	description:String,
 	date: {type: Date, default: Date.now},
 	longitude: Number,
-	latitude: Number
+	latitude: Number,
+	img:String
 });
 
 module.exports = mongoose.model('POI', dtSchema);
