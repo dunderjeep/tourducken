@@ -1,9 +1,9 @@
 #!/bin/env node
 //  OpenShift Tourducken Node application
-var express = require('express');
-var fs      = require('fs');
-var mongoose = require('mongoose');
-
+var express 	= require('express');
+var fs      	= require('fs');
+var mongoose 	= require('mongoose');
+var api		= require('./controller/api.js');
 /**
  *  Define the sample application.
  */
@@ -109,8 +109,6 @@ var Tourducken = function() {
             res.send("<html><body><img src='" + link + "'></body></html>");
         };
 
-	
-
         self.routes['/'] = function(req, res) {
             res.setHeader('Content-Type', 'text/html');
             res.send(self.cache_get('index.html') );
@@ -125,11 +123,19 @@ var Tourducken = function() {
     self.initializeServer = function() {
         self.createRoutes();
         self.app = express();
+	self.app.use(express.bodyParser());
+	self.app.use(express.methodOverride());
+	self.app.use(app.router);
 
         //  Add handlers for the app (from the routes).
         for (var r in self.routes) {
             self.app.get(r, self.routes[r]);
         }
+	self.app.post('/poi', api.post);
+	self.app.get('/poi/near/:lon/:lat/:dist?', api.near);
+	self.app.get('/poi/:name/:descr/:latitude/:longitude?', api.save);
+	self.app.get('/poi/:name.:format?', api.show);
+	self.app.get('/poi', api.list);
     };
 
 
