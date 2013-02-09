@@ -125,7 +125,7 @@ var Tourducken = function() {
         self.app = express();
 	self.app.use(express.bodyParser());
 	self.app.use(express.methodOverride());
-	self.app.use(app.router);
+//	self.app.use(app.router);
 
         //  Add handlers for the app (from the routes).
         for (var r in self.routes) {
