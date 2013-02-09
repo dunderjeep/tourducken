@@ -1,0 +1,13 @@
+[
+	{
+		"latitude": 44.23985,
+		"date": {
+			"$date": 1338854400		
+		},
+		"name": "94 Cherry Street",
+		"longitude": -76.49264,
+		"description": "My House",
+		"img": "http://imgur.com/O1bTkKL"
+	
+	}
+]
