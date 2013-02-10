@@ -29,6 +29,8 @@ var Tourducken = function() {
 	self.dbuname = process.env.OPENSHIFT_MONGODB_DB_USERNAME;
 	self.dbpwd   = process.env.OPENSHIFT_MONGODB_DB_PASSWORD;
 	
+	self.uri = "mongodb://" + self.dbuname + ":" + self.dbpwd + "@" + self.dbhost + ":" + self.dbport;
+
         if (typeof self.ipaddress === "undefined") {
             //  Log errors on OpenShift but continue w/ 127.0.0.1 - this
             //  allows us to run/test the app locally.
@@ -87,7 +89,8 @@ var Tourducken = function() {
             process.on(element, function() { self.terminator(element); });
         });
     };
-
+	
+	mongoose.connect(uri);
 
     /*  ================================================================  */
     /*  App server functions (main app logic here).                       */
