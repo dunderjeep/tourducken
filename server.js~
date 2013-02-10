@@ -90,7 +90,7 @@ var Tourducken = function() {
         });
     };
 	
-//	mongoose.connect(uri);
+	mongoose.connect(self.uri);
 	console.log(self.uri);
 
     /*  ================================================================  */
