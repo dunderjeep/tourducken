@@ -21,3 +21,15 @@ npm ERR! There is likely additional logging output above.
 
 commented out 'self.app.use(app.router);'
 
+2013/02/10 : trying to mongoimport to app-root data - file not found
+-created a new account
+-accidentally scp'ed from new directory and it uploaded - I suspect it was a cache issue - os did not see I had put new data in?
+SOLUTION#1 - put the whole thing into one json called pois,taking out all newline, tabs, etc:
+{pois:[{"latitude": 44.23985,"date": {"$date": 1338854400},"name": "Home","longitude": -76.49264,"description": "Cliff's home"}]}
+SOLUTION#2
+mongoimport --jsonarray -db tourducken -c pois --type json --file app-root/data/pois.json -h $OPENSHIFT_MONGODB_DB_HOST -u admin -p $OPENSHIFT_MONGODB_DB_PASSWORD --ignoreBlanks
+ - adding --jsonarray let me put data in without being one key-value, and apparently allows for newlines, ie as a json array
+ - added 'b' to '-d' for '-db'
+ - had db name wrong - it was 'tourducken' not pois - had to check db name from intialization
+ - *important!* changed $OPENSHIFT_NOSQL_DB_HOST, $OPENSHIFT_NOSQL_DB_PASSWORD to  $OPENSHIFT_MONGODB_DB_PASSWORD, $OPENSHIFT_MONGODB_DB_HOST
+
