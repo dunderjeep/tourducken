@@ -1,11 +1,5 @@
 Feel free to change or remove this file, it is informational only.
 
-MongoDB info
-============
-To Import Data: 
-mongoimport -db tourducken -c pois --type json --file app-root/data/pois.json -h $OPENSHIFT_MONGODB_DB_HOST -u admin -p $OPENSHIFT_MONGODB_DB_PASSWORD --ignoreBlanks
-
-
 Repo Layout
 ===========
 node_modules/                       - Any Node modules packaged with the app

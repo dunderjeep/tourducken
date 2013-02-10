@@ -24,10 +24,10 @@ var Tourducken = function() {
         //  Set the environment variables we need.
         self.ipaddress = process.env.OPENSHIFT_INTERNAL_IP;
         self.port      = process.env.OPENSHIFT_INTERNAL_PORT || 8080;
-	self.dbhost  = process.env.OPENSHIFT_NOSQL_DB_HOST;
-	self.dbport  = process.env.OPENSHIFT_NOSQL_DB_PORT;
-	self.dbuname = process.env.OPENSHIFT_NOSQL_DB_USERNAME;
-	self.dbpwd   = process.env.OPENSHIFT_NOSQL_DB_PASSWORD;
+	self.dbhost  = process.env.OPENSHIFT_MONGODB_DB_HOST;
+	self.dbport  = process.env.OPENSHIFT_MONGODB_DB_PORT;
+	self.dbuname = process.env.OPENSHIFT_MONGODB_DB_USERNAME;
+	self.dbpwd   = process.env.OPENSHIFT_MONGODB_DB_PASSWORD;
 	
         if (typeof self.ipaddress === "undefined") {
             //  Log errors on OpenShift but continue w/ 127.0.0.1 - this
