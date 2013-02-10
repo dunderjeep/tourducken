@@ -29,7 +29,7 @@ var Tourducken = function() {
 	self.dbuname = process.env.OPENSHIFT_MONGODB_DB_USERNAME;
 	self.dbpwd   = process.env.OPENSHIFT_MONGODB_DB_PASSWORD;
 	
-	self.uri = "mongodb://" + self.dbuname + ":" + self.dbpwd + "@" + self.dbhost + ":" + self.dbport;
+	self.uri = "mongodb://" + self.dbuname + ":" + self.dbpwd + "@" + self.dbhost + ":" + self.dbport + "/tourducken";
 
         if (typeof self.ipaddress === "undefined") {
             //  Log errors on OpenShift but continue w/ 127.0.0.1 - this
