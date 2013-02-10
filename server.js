@@ -90,8 +90,8 @@ var Tourducken = function() {
         });
     };
 	
-//	mongoose.connect(uri);
-	console.log(uri);
+	mongoose.connect(self.uri);
+	console.log(self.uri);
 
     /*  ================================================================  */
     /*  App server functions (main app logic here).                       */
