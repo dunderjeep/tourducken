@@ -1,7 +1,7 @@
 var mongoose = require('mongoose')
   ,	Schema = mongoose.Schema;
 
-var dtSchema = new Schema({
+var poiSchema = new Schema({
 	name:String,
 	description:String,
 	date: {type: Date, default: Date.now},
@@ -10,4 +10,4 @@ var dtSchema = new Schema({
 	img:String
 });
 
-module.exports = mongoose.model('POI', dtSchema);
+module.exports = mongoose.model('POI', poiSchema);

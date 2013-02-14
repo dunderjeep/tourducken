@@ -30,6 +30,7 @@ var Tourducken = function() {
 	self.dbpwd   = process.env.OPENSHIFT_MONGODB_DB_PASSWORD;
 	
 	self.uri = "mongodb://" + self.dbuname + ":" + self.dbpwd + "@" + self.dbhost + ":" + self.dbport + "/tourducken";
+	mongoose.connect(self.uri);
 
         if (typeof self.ipaddress === "undefined") {
             //  Log errors on OpenShift but continue w/ 127.0.0.1 - this
@@ -90,7 +91,7 @@ var Tourducken = function() {
         });
     };
 	
-	mongoose.connect(self.uri);
+	
 	console.log(self.uri);
 
     /*  ================================================================  */
